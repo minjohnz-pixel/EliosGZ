@@ -1,71 +1,85 @@
-# EliosGZ｜小说、剧本、游戏、随笔与思想网站
+# EliosGZ V0.3 — 中文 / English 双语界面
 
-这是一个**可在 Windows 电脑上直接打开、无需购买域名、无需安装程序**的静态网站初版。
+[线上网站](https://minjohnz-pixel.github.io/EliosGZ/) · [仓库](https://github.com/minjohnz-pixel/EliosGZ)
 
-## 1. 先在电脑上打开
+这是一个**无需服务器、可在 Windows 上双击 `index.html` 预览**的 GitHub Pages 静态网站。
 
-1. 将压缩包完整解压到一个文件夹（不要只把 index.html 单独拿出来）。
-2. 双击 `index.html`，浏览器会显示网站首页。
-3. 点击首页、小说、随笔、思想、关于，尝试站内搜索和深浅模式切换。
+## 重要：两套语言不是一回事
 
-## 2. 如何修改标题、文章
+- **界面语言**：顶部的 `中文 / EN` 切换全站导航、首页、按钮、提示、搜索和关于页面。首次访问默认为中文；再次访问记住读者的选择。
+- **作品语言**：每篇小说、剧本、游戏介绍、随笔可以是仅中文、仅英文或中英双版本。
+- 网站切换成英文 **不表示中文作品已经翻译**。英文版不存在时，仍显示中文原文，并以英文明确说明。反之亦然。
+- 同一作品具有中英文两个经确认的文本版本时，文章阅读页单独出现 `中文 / EN` 选择，不必改变全站界面语言。
+- 中文和英文版本可分别改编，不必逐字对应；请确保署名、版本状态准确。
 
-使用 Windows 记事本或 VS Code 打开 `content.js`。
-- 顶部 `SITE_CONFIG` 是网站标题、简介、关于页面。
-- `SITE_POSTS` 是文章列表。
-- 每一篇文章都有 `slug`（英文/数字短标识）、`category`、`title`、`summary`、`date` 和 `paragraphs`。
-- 把 `paragraphs` 中每一个字符串写成一个段落；复制整篇文章对象，即可增加更多文章。
-- `category` 只能用 `fiction`（小说）、`script`（剧本）、`game`（游戏）、`essay`（随笔）、`thought`（思想）。
-- `slug` 必须唯一，建议只用英文小写字母、数字和连字符。
-- 如果文字中有英文双引号 `"` 或反斜杠 `\`，要按 JavaScript 字符串规则转义：`\"`、`\\`。
-- 保存后，刷新浏览器即可。
+## 电脑上预览
 
-**当前三篇都是演示文字，不是你的正式作品。公开上线前一定要替换或删除。**
+解压全部文件到同一个文件夹，**双击 `index.html`**。顶端切换 `中文 / EN`；文章列表和三个演示页面可以测试双语行为。
 
-## 3. 从电脑上传并发布到 GitHub Pages（不用 Git 命令）
+当前三篇是演示文章而非正式作品。其中一篇演示随笔具有两种语言；另两篇只有中文。剧本、游戏、作品档案栏目不自动公开任何内部项目资料。
 
-1. 登录 GitHub：https://github.com
-2. 右上角 `+` → `New repository`。
-3. 如需建立 GitHub 个人主页，仓库名称必须填：`你的GitHub用户名.github.io`。例如用户名是 `octocat`，仓库名就是 `octocat.github.io`。如果只是某个项目网站，也可以使用别的仓库名，网址会包含仓库名称。
-4. 选择 `Public`（GitHub Free 的 Pages 发布要求仓库公开），创建仓库。
-5. 进入仓库 → `Add file` → `Upload files`，**上传本起步包内所有文件**，包括 `index.html`、`styles.css`、`site.js`、`content.js`、`.nojekyll` 和 `README.md`。注意不要把整个外层文件夹上传成子目录；`index.html` 应在仓库根目录。某些系统隐藏点开头的文件，`.nojekyll` 不可见时可暂时略过。
-6. 仓库 `Settings` → `Pages`。
-7. 在 `Build and deployment` → `Source` 选择 `Deploy from a branch`。
-8. 选择 `main` → `/(root)` → `Save`。
-9. GitHub Pages 完成部署后，打开 `https://你的GitHub用户名.github.io/`（个人主页仓库），或者 `https://你的GitHub用户名.github.io/仓库名/`（项目网站）。
+## 修改作品——主要编辑 `content.js`
 
-官方说明：
-- https://docs.github.com/en/pages/quickstart
-- https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site
+老版本的文章数据依然可用；如果没有 `language` 字段，默认中文原文。
 
-## 4. 推荐的资料划分（重要）
+### 只有中文（无需英文）
 
-公开的 GitHub 仓库：**只放愿意公开给读者的内容**。
-个人电脑另外保留：
-- 小说正文原稿、未发表版本；
-- 内部协作说明、人物档案和版本历史；
-- 备份和其他不适合公开的资料。
+```js
+{
+  slug: "my-story", category: "fiction", date: "2026-10-25",
+  language: "zh", title: "故事", summary: "简介",
+  paragraphs: ["第一段。", "第二段。"]
+}
+```
 
-GitHub Pages 不是私密工作空间，也不是存放账号口令的地方。不要上传个人隐私、密码、访问令牌、未经确认可以公开的文档。
+### 有英文版（译文或英语改编稿经过确认）
 
-## 5. 后续升级路线
+```js
+{
+  slug: "my-story", category: "fiction", date: "2026-10-25",
+  language: "zh", title: "故事", summary: "简介",
+  paragraphs: ["第一段。", "第二段。"],
+  translations: { en: {
+    title: "A Story", summary: "A short description.",
+    paragraphs: ["First paragraph.", "Second paragraph."]
+  }}
+}
+```
 
-- 第一步：替换三篇演示文章，确认网站名称与署名。
-- 第二步：新增小说卷/章、文章目录和系列页。
-- 第三步：建立适合多平台 AI 协作的网站内容格式，避免把内部草稿误发布。
-- 第四步：如文章规模变大，再评估 Jekyll 或其他静态网站生成器。
+### 英文原文（没有中文版）
 
-## 6. 文件清单
+```js
+{
+  slug: "english-original", category: "essay", date: "2026-10-25",
+  language: "en", title: "English Original", summary: "Description.",
+  paragraphs: ["An essay written in English."]
+}
+```
 
-- `index.html`：首页与网站结构
-- `styles.css`：版式、手机适配、深浅主题
-- `content.js`：文章、网站设置（主要编辑这里）
-- `site.js`：栏目、文章页、站内搜索、主题切换
-- `.nojekyll`：告诉 GitHub Pages 不走 Jekyll 特殊处理
-- `README.md`：本使用说明
+支持 `fiction`（小说）, `script`（剧本）, `game`（游戏）, `essay`（随笔）, `thought`（思想）。`slug` 不得重复，建议只使用英文小写字母、数字和短横线。文本中的引号、反斜杠应遵守 JavaScript 字符串的转义规则。
 
-**版本：V0.1（2026-10-25）**。网站零外部依赖，静态托管即可使用。
+**游戏栏目当前只容纳说明文字。** 真实游戏应该将经过批准的玩家版本部署到独立子目录，内部判定资料和设计文档不应随游戏公开。
 
+## 上传现有 GitHub 仓库（只更新文件，不新建仓库）
 
-## V0.2 栏目补充
-新增剧本、游戏、作品档案，保留现有三篇演示文字。剧本栏目可展示文本；可互动游戏需要独立开发。内部总控仅用于策划，不能默认上传到公开仓库。
+1. 打开 `https://github.com/minjohnz-pixel/EliosGZ`。
+2. 编辑或覆盖仓库根目录现有文件：`index.html`、`site.js`、`styles.css`、`content.js`、`README.md`。
+3. 保留 `.nojekyll`，不用重复创建。
+4. 在仓库根目录确认 `index.html`；GitHub Pages 继续从 `main / (root)` 发布。
+5. 保存后等待 GitHub Pages 部署，再刷新网站（必要时 Ctrl+F5）。
+
+注意：在网页上**不能保证直接用同名文件拖拽上传就可以覆盖原文件**；如遇同名冲突，请进入具体文件，点击铅笔图标编辑，将本地文件内容全部替换并提交。更建议使用 GitHub Desktop，一次更新五个文件并提交。
+
+## 公开规则
+
+- 不把内部项目总控、未发表手稿、未审批翻译、密室谜底或游戏内部开发文件复制到公开仓库。
+- 目前演示内容只有样例功能，不代表作品已经正式发布。
+- 如需独立英文网址、站内语言固定链接或游戏内双语，再做后续版本。
+
+**版本：V0.3 — 2026-10-25**
+
+---
+
+## English quick start
+
+Extract all files, then open `index.html` locally. The `中文 / EN` control switches the interface language; original work texts remain in their actual available languages. Edit `content.js` to add approved works or optional editions. For the existing GitHub Pages site, update files in the repository root and keep GitHub Pages configured to deploy from `main / (root)`.

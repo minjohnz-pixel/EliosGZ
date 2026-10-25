@@ -4,58 +4,64 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="color-scheme" content="light dark">
-  <meta name="description" content="小说、剧本、游戏、随笔与思想笔记的独立创作网站。">
-  <title>写作与思考｜个人作品网站</title>
+  <meta name="description" id="site-description" content="EliosGZ：小说、剧本、游戏、随笔与思想的双语创作网站。">
+  <title>EliosGZ｜写作与思考</title>
   <link rel="stylesheet" href="styles.css">
   <script src="content.js" defer></script>
   <script src="site.js" defer></script>
 </head>
 <body>
-  <a class="skip-link" href="#main">跳转到正文</a>
+  <a class="skip-link" href="#main" data-i18n="skip">跳转到正文</a>
   <header class="site-header">
     <div class="site-header-inner shell">
-      <a class="brand" href="#/" aria-label="返回网站首页">
-        <span class="brand-mark" aria-hidden="true">文</span>
-        <span class="brand-name">写作与思考<span class="brand-subtitle">WORKS & NOTES</span></span>
+      <a class="brand" href="#/" aria-label="EliosGZ">
+        <span class="brand-mark" id="brand-mark" aria-hidden="true">文</span>
+        <span class="brand-name">EliosGZ<span class="brand-subtitle" data-i18n="brandSubtitle">写作与思考</span></span>
       </a>
       <div class="header-actions">
-        <nav aria-label="主导航" class="main-nav">
-          <a href="#/" data-nav="all">首页</a>
-          <a href="#/category/fiction" data-nav="fiction">小说</a>
-          <a href="#/category/script" data-nav="script">剧本</a>
-          <a href="#/category/game" data-nav="game">游戏</a>
-          <a href="#/category/essay" data-nav="essay">随笔</a>
-          <a href="#/category/thought" data-nav="thought">思想</a>
-          <a href="#/archive" data-nav="archive">作品档案</a>
-          <a href="#/about" data-nav="about">关于</a>
+        <nav aria-label="主导航" class="main-nav" id="main-nav">
+          <a href="#/" data-nav="all" data-i18n="navHome">首页</a>
+          <a href="#/category/fiction" data-nav="fiction" data-i18n="catFiction">小说</a>
+          <a href="#/category/script" data-nav="script" data-i18n="catScript">剧本</a>
+          <a href="#/category/game" data-nav="game" data-i18n="catGame">游戏</a>
+          <a href="#/category/essay" data-nav="essay" data-i18n="catEssay">随笔</a>
+          <a href="#/category/thought" data-nav="thought" data-i18n="catThought">思想</a>
+          <a href="#/archive" data-nav="archive" data-i18n="navArchive">作品档案</a>
+          <a href="#/about" data-nav="about" data-i18n="navAbout">关于</a>
         </nav>
-        <button class="theme-button" type="button" id="theme-switch" aria-label="切换深色或浅色模式" title="切换深色或浅色模式">◐</button>
+        <div class="utility-nav">
+          <div class="lang-switch" role="group" aria-label="Website language" id="site-language-switch">
+            <button type="button" class="lang-option" data-site-lang="zh" lang="zh-CN" aria-pressed="true">中文</button>
+            <span class="lang-separator" aria-hidden="true">/</span>
+            <button type="button" class="lang-option" data-site-lang="en" lang="en" aria-pressed="false">EN</button>
+          </div>
+          <button class="theme-button" type="button" id="theme-switch" aria-label="切换深色或浅色模式" title="切换深色或浅色模式">◐</button>
+        </div>
       </div>
     </div>
   </header>
 
   <main id="main" tabindex="-1" class="shell" aria-live="polite">
     <section class="hero">
-      <div class="eyebrow"><span class="eyebrow-line"></span> AN OPEN NOTEBOOK</div>
-      <h1>文字值得有一个<br><em>安静停留</em>的地方。</h1>
-      <p class="hero-lead">小说、剧本、游戏、随笔与思想笔记。这里先是一间书房，然后才是一座网站。</p>
+      <div class="eyebrow"><span class="eyebrow-line"></span><span data-i18n="eyebrow">AN OPEN NOTEBOOK</span></div>
+      <h1><span data-i18n="heroLine1">文字值得有一个</span><br><em data-i18n="heroLine2">安静停留的地方。</em></h1>
+      <p class="hero-lead" data-i18n="heroLead">小说、剧本、游戏、随笔与思想笔记。这里先是一间书房，然后才是一座网站。</p>
       <div class="hero-meta">
-        <span><span class="tiny-dot" aria-hidden="true"></span> 纯静态网站</span>
-        <span>·</span>
-        <span>可离线打开</span>
-        <span>·</span>
-        <span>面向 GitHub Pages</span>
+        <span><span class="tiny-dot" aria-hidden="true"></span><span data-i18n="metaStatic">独立创作网站</span></span>
+        <span aria-hidden="true">·</span>
+        <span data-i18n="metaBilingual">中英界面自由切换</span>
+        <span aria-hidden="true">·</span>
+        <span data-i18n="metaOriginal">尊重作品原文</span>
       </div>
     </section>
-
     <section id="view" class="view-section"></section>
-    <noscript><p class="noscript-note">此演示站点的文章列表需要启用 JavaScript。网站文件仍可作为普通文本离线编辑。</p></noscript>
+    <noscript><p class="noscript-note">此网站需要启用 JavaScript 查看文章；The site requires JavaScript to browse works.</p></noscript>
   </main>
 
   <footer class="site-footer">
     <div class="shell footer-inner">
-      <span>写作与思考 <span class="footer-divider">/</span> 保留文字，也保留修改的自由。</span>
-      <a href="#/">回到首页 ↑</a>
+      <span>EliosGZ <span class="footer-divider">/</span> <span data-i18n="footer">保留文字，也保留修改的自由。</span></span>
+      <a href="#/" data-i18n="backTop">回到首页 ↑</a>
     </div>
   </footer>
 </body>
