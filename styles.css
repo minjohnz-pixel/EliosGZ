@@ -118,3 +118,16 @@ button:focus-visible, a:focus-visible, input:focus-visible { outline: 2px solid 
   html { scroll-behavior: auto; }
   .post-card { transition: none; }
 }
+
+/* EliosGZ V0.2 */
+.main-nav { flex-wrap: wrap; justify-content: flex-end; gap: 12px 20px; }
+.channels { margin-bottom: 60px; }
+.channels h2 { font: 500 30px/1.5 var(--serif); margin: 13px 0 23px; }
+.channel-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+.channel { display:flex; flex-direction:column; gap:13px; min-height:120px; padding:20px; background:var(--surface); border:1px solid var(--line); border-radius:5px; }
+.channel:hover { border-color:var(--accent); }
+.channel span { font-size:11px; color:var(--accent); }
+.channel strong { font: 500 21px var(--serif); }
+.channel span:last-child { align-self:flex-end; margin-top:auto; }
+@media(max-width:790px) { .main-nav { justify-content:flex-start; } .channel-grid { grid-template-columns:repeat(2,1fr); } }
+@media(max-width:550px) { .channel {padding:15px; min-height:100px;} .main-nav { gap:10px 16px; } }

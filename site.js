@@ -5,6 +5,8 @@
   const POSTS = Array.isArray(window.SITE_POSTS) ? window.SITE_POSTS : [];
   const categories = {
     fiction: { name: "小说", english: "FICTION" },
+    script: { name: "剧本", english: "SCRIPTS" },
+    game: { name: "游戏", english: "GAMES" },
     essay: { name: "随笔", english: "ESSAYS" },
     thought: { name: "思想", english: "THOUGHTS" }
   };
@@ -25,7 +27,7 @@
         <div class="card-bottom"><span>${esc(p.label || "文章")}</span><span class="arrow-mark" aria-hidden="true">↗</span></div>
       </a>
     </article>`;
-  const empty = `<div class="empty-state">此栏目暂时还没有文章。</div>`;
+  const empty = `<div class="empty-state">栏目已经建立，暂无确认可公开的作品。</div>`;
 
   function setActive(active) {
     document.querySelectorAll("[data-nav]").forEach(el => {
@@ -39,7 +41,9 @@
     const title = descriptor ? descriptor.name : "最新文字";
     const small = descriptor ? descriptor.english : "RECENT WRITING";
     const sorted = [...selected].sort((a,b)=> String(b.date).localeCompare(String(a.date)));
+    const channels = category === "all" ? `<div class="channels"><p class="eyebrow eyebrow-small">EXPLORE</p><h2>作品与创作</h2><div class="channel-grid">${Object.entries(categories).map(([key,info])=>`<a class="channel" href="#/category/${key}"><span>${esc(info.english)}</span><strong>${esc(info.name)}</strong><span>↗</span></a>`).join("")}<a class="channel" href="#/archive"><span>ARCHIVE</span><strong>作品档案</strong><span>↗</span></a></div></div>` : "";
     view.innerHTML = `
+      ${channels}
       <div class="section-heading">
         <div><p class="eyebrow eyebrow-small">${esc(small)}</p><h2>${esc(title)}</h2></div>
         <span class="item-count">${selected.length} 篇</span>
@@ -86,6 +90,10 @@
       </div>`;
     setActive("about");
   }
+  function renderArchive() {
+    view.innerHTML = `<div class="about-page"><p class="eyebrow eyebrow-small">WORKS & VERSIONS</p><h2>作品档案</h2><p>这里将展示经过确认、可以公开的作品目录和版本记录。</p><p>内部项目总控、创作草稿与协作说明不会自动作为公开作品发布。</p><div class="about-rule"><strong>公开原则</strong><span>区分规划、试写、已成正文与可玩游戏，不以项目登记冒充公开成品。</span></div></div>`;
+    setActive("archive");
+  }
   function renderMissing() {
     view.innerHTML = `<div class="empty-state large"><h2>没有找到这篇文章</h2><p>文章可能已经移动，或者链接尚未建立。</p><a href="#/">返回首页</a></div>`;
     setActive("");
@@ -95,6 +103,7 @@
     const path = hash.startsWith("#/") ? hash.slice(2).split("/") : [];
     if (path[0] === "article" && path[1]) renderArticle(decodeURIComponent(path.slice(1).join("/")));
     else if (path[0] === "category" && categories[path[1]]) renderHome(path[1]);
+    else if (path[0] === "archive") renderArchive();
     else if (path[0] === "about") renderAbout();
     else renderHome();
     window.scrollTo({ top: 0, behavior: "instant" });
